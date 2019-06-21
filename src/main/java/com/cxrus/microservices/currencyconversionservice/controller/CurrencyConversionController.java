@@ -42,7 +42,7 @@ public class CurrencyConversionController {
 		logger.info("{}", response);
 		
 		return new CurrencyConversionBean(1L, from, to, response.getConversionMultiple(), 
-				quantity, quantity.multiply(response.getConversionMultiple()), response.getPort());
+				quantity, quantity.multiply(response.getConversionMultiple()), response.getPort(), response.getIpAddress());
 	}
 
 	@GetMapping("/currency-converter-feign/from/{from}/to/{to}/quantity/{quantity}")
@@ -52,6 +52,6 @@ public class CurrencyConversionController {
 		CurrencyConversionBean response = proxy.retrieveExchangeValue(from, to);
 		
 		return new CurrencyConversionBean(1L, from, to, response.getConversionMultiple(), 
-				quantity, quantity.multiply(response.getConversionMultiple()), response.getPort());
+				quantity, quantity.multiply(response.getConversionMultiple()), response.getPort(), response.getIpAddress());
 	}
 }
